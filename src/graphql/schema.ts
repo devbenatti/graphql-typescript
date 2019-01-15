@@ -23,7 +23,7 @@ const typeDefs = `
         allUsers: [User!]!
     }
     type Mutation {
-        createUser(nome: String!, email: String!): User
+        createUser(name: String!, email: String!): User
     }
 `;
 
@@ -34,10 +34,12 @@ const resolvers = {
 
     },
     Mutation: {
-        createUser: (args) => {
+        //@ts-ignore
+        createUser: (parent, args) => {
             const newUser = Object.assign({id: users.length + 1}, args)
             users.push(newUser)
             return newUser
+
         }
 
     }

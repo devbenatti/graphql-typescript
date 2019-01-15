@@ -8,6 +8,8 @@ export interface UserAttributes {
     email?: string
     password?: string
     photo?: string
+    createdAt?: string
+    updatedAt?: string
 }
 
 export interface UserInstance extends Sequelize.Instance<UserAttributes>, UserAttributes {
@@ -15,7 +17,7 @@ export interface UserInstance extends Sequelize.Instance<UserAttributes>, UserAt
     isPassword(encodedPassword: string , password: string): boolean
 }
 
-export interface UserModel extends  Sequelize.Model<UserInstance, UserAttributes> {
+export interface UserModel extends Sequelize.Model<UserInstance, UserAttributes> {
     protype?;
     associate?(models: ModelsInterface): void
 }
@@ -52,19 +54,19 @@ export default (sequelize: Sequelize.Sequelize, DataTypes: Sequelize.DataTypes):
         }
     },
     {
-        tableName: 'Users',
+        tableName: 'users',
         hooks: {
             //@ts-ignore
             beforeCreate: (user: UserInstance, options: Sequelize.CreateOptions): void => {
                 const salt = genSaltSync();
                 user.password = hashSync(user.password,salt)
-                
+
             }
         },
     })
     //@ts-ignore
-    User.associate = (models: ModelsInterface) => {
-
+    User.associate = (models: ModelsInterface): void => {
+       
     }
     User.protype.isPassword = (encodedPassword: string , password: string): boolean => {
         return compareSync(password, encodedPassword)
