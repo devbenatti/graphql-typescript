@@ -19,6 +19,7 @@
     "@types/node": "^10.12.18",
     "@types/sequelize": "^4.27.33",
     "del": "^3.0.0",
+    "forest-express-sequelize": "^2.16.9",
     "gulp": "^4.0.0",
     "gulp-typescript": "^5.0.0",
     "nodemon": "^1.18.9",
@@ -27,6 +28,7 @@
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "dotenv": "^6.2.0",
     "express": "^4.16.4",
     "express-graphql": "^0.7.1",
     "graphql": "^14.0.2",
