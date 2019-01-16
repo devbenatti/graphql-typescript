@@ -17,8 +17,8 @@ export interface UserInstance extends Sequelize.Instance<UserAttributes>, UserAt
     isPassword(encodedPassword: string , password: string): boolean
 }
 
-export interface UserModel extends Sequelize.Model<UserInstance, UserAttributes> {
-    protype?;
+export interface UserModel extends Sequelize.Model<UserInstance, UserAttributes>, Sequelize.AssociationOptions{
+    prototype?;
     associate?(models: ModelsInterface): void
 }
 
@@ -68,8 +68,10 @@ export default (sequelize: Sequelize.Sequelize, DataTypes: Sequelize.DataTypes):
     User.associate = (models: ModelsInterface): void => {
        
     }
-    User.protype.isPassword = (encodedPassword: string , password: string): boolean => {
+    User.prototype.isPassword = (encodedPassword: string , password: string): boolean => {
         return compareSync(password, encodedPassword)
     }
+
     return User
+    
 }
