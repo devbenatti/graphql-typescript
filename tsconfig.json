@@ -18,7 +18,7 @@
             "es2015.symbol.wellknown",
             "esnext.asynciterable"
         ],
-        "noUnusedLocals": true,
+        "noUnusedLocals": false,
         "noUnusedParameters": true,
         "noImplicitReturns": true,
         "noFallthroughCasesInSwitch": true
