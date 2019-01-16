@@ -16,7 +16,7 @@ export interface PostInstance extends Sequelize.Instance<PostAttributes>, PostAt
 }
 
 export interface PostModel extends  Sequelize.Model<PostInstance, PostAttributes> {
-    protype?;
+    prototype?;
     associate?(models: ModelsInterface): void
 }
 
