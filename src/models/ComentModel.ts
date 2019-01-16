@@ -15,7 +15,7 @@ export interface ComentInstance extends Sequelize.Instance<ComentAttributes>, Co
 }
 
 export interface ComentModel extends  Sequelize.Model<ComentInstance, ComentAttributes> {
-    protype?;
+    prototype?;
     associate?(models: ModelsInterface): void
 }
 
