@@ -10,6 +10,7 @@ const SchemaDefinition = `
         mutation: Mutation
     }
 `
+
 export default makeExecutableSchema({
     typeDefs:[
         SchemaDefinition,
