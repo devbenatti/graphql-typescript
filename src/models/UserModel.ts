@@ -47,9 +47,7 @@ export default (sequelize: Sequelize.Sequelize, DataTypes: Sequelize.DataTypes):
             }
         },
         photo: {
-            type: DataTypes.BLOB({
-                length: 'long'
-            }),
+            type: DataTypes.BLOB,
             allowNull: true
         }
     },
@@ -60,8 +58,16 @@ export default (sequelize: Sequelize.Sequelize, DataTypes: Sequelize.DataTypes):
             beforeCreate: (user: UserInstance, options: Sequelize.CreateOptions): void => {
                 const salt = genSaltSync();
                 user.password = hashSync(user.password,salt)
+            },
+            //@ts-ignore
+            beforeUpdate: (user: UserInstance, options: Sequelize.CreateOptions): void => {
+                if(user.changed('password')) {
+                    const salt = genSaltSync();
+                    user.password = hashSync(user.password,salt)
+                }
+                
+            },
 
-            }
         },
     })
     //@ts-ignore
