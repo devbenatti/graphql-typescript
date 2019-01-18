@@ -57,7 +57,7 @@ export const postResolvers = {
         deletePost: async (parent, {id}, {db}: {db: DbConnection} , info: GraphQLResolveInfo) => {
             id = parseInt(id)
             return db.sequelize.transaction(async(t: Transaction) => {
-                const post = await db.Post.findById(id).then
+                const post = await db.Post.findById(id)
                 if(!post) throw new Error(`Post with id ${id} not found!`);
                 const postDeleted = await db.Post.destroy({where: {id}, transaction: t})
                 return !!postDeleted
