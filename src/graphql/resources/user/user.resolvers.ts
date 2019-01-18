@@ -70,7 +70,7 @@ export const userResolvers = {
         deleteUser: async (parent, {id}, {db}: {db: DbConnection} , info: GraphQLResolveInfo) => {
             id = parseInt(id)
             return db.sequelize.transaction(async(t: Transaction) => {
-                const user = await db.User.findById(id).then
+                const user = await db.User.findById(id)
                 if(!user) throw new Error(`User with id ${id} not found!`);
                 const userDeleted = await db.User.destroy({where: {id}, transaction: t})
                 return !!userDeleted
