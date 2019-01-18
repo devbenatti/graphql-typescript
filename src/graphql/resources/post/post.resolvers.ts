@@ -63,5 +63,6 @@ export const postResolvers = {
                 return !!postDeleted
             })
         },
+    }
 
 }
