@@ -3,7 +3,7 @@ const postTypes = `
         id: ID!
         title: String!
         content: String!
-        photo: String!
+        photo: String
         createdAt: String!
         updatedAt: String!
         author: User!
@@ -12,12 +12,11 @@ const postTypes = `
     input PostInput {
         title: String!
         content: String!
-        photo: String!
+        photo: String
         author: Int!
     }
 
 `
-
 const postQueries = `
     posts(first: Int, offset: Int): [ Post! ]!
     post(id: ID!): Post
@@ -29,7 +28,6 @@ const postMutations = `
     deletePost(id: ID!): Boolean
 
 `
-
 export {
     postTypes,
     postMutations,
