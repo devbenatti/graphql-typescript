@@ -47,7 +47,7 @@ export default (sequelize: Sequelize.Sequelize, DataTypes: Sequelize.DataTypes):
             }
         },
         photo: {
-            type: DataTypes.BLOB,
+            type: DataTypes.STRING,
             allowNull: true
         }
     },
@@ -61,13 +61,13 @@ export default (sequelize: Sequelize.Sequelize, DataTypes: Sequelize.DataTypes):
             },
             //@ts-ignore
             beforeUpdate: (user: UserInstance, options: Sequelize.CreateOptions): void => {
+                console.log("entrou aqui")
                 if(user.changed('password')) {
+                    console.log("vou criptografar o password")
                     const salt = genSaltSync();
                     user.password = hashSync(user.password,salt)
                 }
-                
             },
-
         },
     })
     //@ts-ignore
