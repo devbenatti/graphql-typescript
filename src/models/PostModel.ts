@@ -37,8 +37,8 @@ export default (sequelize: Sequelize.Sequelize, DataTypes: Sequelize.DataTypes):
             allowNull: false
         },
         photo: {
-            type: DataTypes.BLOB(),
-            allowNull: false
+            type: DataTypes.STRING,
+            allowNull: true
         }
     },{
         tableName: 'posts'
