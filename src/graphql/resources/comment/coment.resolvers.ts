@@ -39,8 +39,6 @@ export const commentResolvers = {
             } catch (error) {
                 return formatError(error)
             }
-            
-
         }
     },
     Mutation: {
@@ -59,7 +57,8 @@ export const commentResolvers = {
                     const comment = await db.Comment.findById(id)
                     if(!comment) throw new Error (`Comment with id ${id} not found!`) 
                     // retorna o usuário atualizado
-                    return await db.Comment.update(input, {where: {id}, transaction: t})
+                    await db.Comment.update(input, {where: {id}, transaction: t})
+                    return await db.Comment.findById(id, {transaction: t})
                     
                 })
                 return response

@@ -5,14 +5,17 @@ import { userTypes } from './resources/user/user.schema';
 import { postTypes } from './resources/post/post.schema'
 import { commentTypes } from './resources/comment/coment.schema';
 import {merge} from 'lodash'
-import { commentResolvers } from './resources/comment/commet.resolvers';
+import { commentResolvers } from './resources/comment/coment.resolvers';
 import { postResolvers } from './resources/post/post.resolvers';
 import { userResolvers } from './resources/user/user.resolvers';
+import { tokenTypes } from './resources/token/token.schema';
+import { tokenResolvers } from './resources/token/token.resolvers';
 
 const resolvers = merge(
     commentResolvers,
     postResolvers,
-    userResolvers
+    userResolvers,
+    tokenResolvers
 )
 const SchemaDefinition = `
     type Schema {
@@ -27,9 +30,9 @@ export default makeExecutableSchema({
         Mutation,
         userTypes,
         postTypes,
-        commentTypes
+        commentTypes,
+        tokenTypes
     ],
     resolvers
 });
  
-    
