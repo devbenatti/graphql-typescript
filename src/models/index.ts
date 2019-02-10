@@ -5,11 +5,16 @@ import { DbConnection } from '../interfaces/DbConnectionInterface';
 
 const basename: string = path.basename(module.filename)
 const env: string = process.env.NODE_ENV || 'development';
-const config = require(path.resolve(`${__dirname}./../config/config.json`))[env]
+let config = require(path.resolve(`${__dirname}./../config/config.json`))[env]
 let db = null
 let sequelize: Sequelize.Sequelize;
 if(!db) {
     db = {};
+    const operatorsAliases = {
+        $in: Sequelize.Op.in
+    }
+    config = Object.assign({operatorsAliases},config)
+
     if (config.use_env_variable) {
         sequelize = new Sequelize(process.env[config.use_env_variable], config);
       } else {
@@ -20,7 +25,6 @@ if(!db) {
             config
         )
       }
-
     fs.readdirSync(__dirname)
         .filter(file => {
             return (
