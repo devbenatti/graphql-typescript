@@ -13,9 +13,7 @@ const postTypes = `
         title: String!
         content: String!
         photo: String
-        author: Int!
     }
-
 `
 const postQueries = `
     posts(first: Int, offset: Int): [ Post! ]!
